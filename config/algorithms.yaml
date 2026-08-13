@@ -1,0 +1,50 @@
+# config/algorithms.yaml
+# Hiperparámetros de los algoritmos de optimización de enjambre.
+# Cada perfil puede ser sobrescrito vía CLI: --param hybrid.alpha=2.0
+
+pso:
+  w: 0.7
+  c1: 1.5
+  c2: 1.5
+  v_max: 5.0
+
+aco:
+  alpha: 1.0
+  beta: 2.0
+  rho: 0.1
+  Q: 1.0
+  initial_pheromone: 0.1
+  pheromone_floor: 1.0e-6
+  micro_steps: 5
+
+hybrid:
+  w: 0.7
+  c1: 1.5
+  c2: 1.5
+  alpha: 1.0
+  beta: 2.0
+  rho: 0.05  # tuned: 0.05 > 0.1 (TCR -30%, energy -10%)
+  Q: 1.0
+  stress_threshold: 0.4
+  transit_step_size: 5.0
+  aco_micro_steps: 5
+  initial_pheromone: 0.1
+  pheromone_floor: 1.0e-6
+
+boustrophedon:
+  stress_threshold: 0.4
+  sweep_step: 3.0
+  descent_step: 3.0
+  micro_steps: 5
+
+experiment:
+  n_drones: 10
+  default_seeds: 30
+  default_iterations: 300
+  field_size: 100
+  coverage_radius: 3.0
+  start_offset_hybrid: 15.0
+  fleet_mix:
+    # Proporción de roles en la flota (suma debe ser n_drones)
+    monitor: 6
+    sprayer: 4
