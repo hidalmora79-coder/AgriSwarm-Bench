@@ -521,8 +521,17 @@ Rendimientos decrecientes: 5→10 ×1.88, 10→20 ×1.55, 20→30 ×1.31.
 | Response Letter (R1–R5 + S1–S5) | `response_letter.tex` + `response_letter.pdf` (2 pp) | ✅ |
 | README AgriSwarm-Bench reproducible | `01_PROYECTO/AgriSwarm-Py/README.md` | ✅ |
 | Compilación xelatex | 0 errores, 119 KB | ✅ |
+| Pipeline científico | `run.ps1 -Target all` → 4/4 OK + SymPy + DVC | ✅ |
+| Validación integral | `validate_fase1.py` → 22/22 PASS | ✅ |
+| GitHub AgriSwarm-Bench | Commit `bad0150` + `3888201` → main (13 MB) | ✅ |
+
+### Correcciones aplicadas en validación
+
+1. **`layer2_math.py` desactualizado**: esperaba TCRs de la Sesión 3 (HYBRID=0.304, PSO=0.308, Multi-Niche=0.472). Actualizado a la Sesión 5 (HYBRID=0.333, PSO=0.311, Multi-Niche=0.477, HYBRID_HETERO=0.303). Esto hizo fallar MATH antes del fix.
+2. **`validate_fase1.py` desactualizado**: esperaba 150 CSVs (5 configs) y 5 configs en la tabla de baselines. Corregido a 180 CSVs / 6 configs + columnas `n_transit/n_exploit` (R3).
+3. **CSVs ACO/PSO legacy**: 60 archivos sin columnas R3. Re-corridos con el código actual (216 s). TCRs intactos: PSO=0.311, ACO=0.063.
 
 ### Pendiente para re-someter
-- Subir README actualizado a GitHub (repo AgriSwarm-Bench)
-- Validar pipeline: `.\01_PROYECTO\run.ps1 -Target all`
-- Re-someter en el portal de COMPAG (S-26-07551)
+- ✅ Subir README actualizado a GitHub (hecho: main)
+- ✅ Validar pipeline (hecho: 4/4 OK)
+- [ ] Re-someter en el portal de COMPAG (S-26-07551)
