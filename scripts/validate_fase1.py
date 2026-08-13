@@ -52,11 +52,11 @@ def validate_synthetic():
     syn = RAW / "synthetic"
     csvs = sorted(syn.glob("*.csv"))
     total = len(csvs)
-    check(total == 150, f"150 CSV files (5 configs x 30 seeds, found {total})")
+    check(total == 180, f"180 CSV files (6 configs x 30 seeds, found {total})")
     if total == 0:
         return
     df = pd.read_csv(csvs[0])
-    expected_cols = {"seed", "config", "scenario", "iteration", "tcr", "mean_energy", "sigma_energy"}
+    expected_cols = {"seed", "config", "scenario", "iteration", "tcr", "mean_energy", "sigma_energy", "n_transit", "n_exploit"}
     check(expected_cols.issubset(df.columns), f"columns: {sorted(df.columns)}")
     check(df["iteration"].max() >= 299, f"max iteration >= 299 (found {df['iteration'].max()})")
 
@@ -124,7 +124,7 @@ def validate_baseline_comparison():
     if (bc / "baseline_stats.csv").exists():
         df = pd.read_csv(bc / "baseline_stats.csv")
         n_configs = len(df)
-        check(n_configs == 5, f"5 configs in stats table (found {n_configs})")
+        check(n_configs == 6, f"6 configs in stats table (found {n_configs})")
 
 
 def validate_script_exists():
